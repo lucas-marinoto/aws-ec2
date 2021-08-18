@@ -64,31 +64,31 @@ def get_route_table_assoc_subnet(vpc_filter, instance_id):
     return rt_assoc_infos
 
 
-def get_security_group(vpc_filter, instance_id):
+# def get_security_group(vpc_filter, instance_id):
 
-    route_table = client.describe_route_tables(Filters=vpc_filter)
-    route_tables = route_table['RouteTables']
+#     route_table = client.describe_route_tables(Filters=vpc_filter)
+#     route_tables = route_table['RouteTables']
 
-    rt_assoc_infos = {
-        "instance_id": [],
-        "route_table_id": [],
-        "route_table_assoc_id": [],
-        "vpc_id": [],
-        "subnet_id": []
-    }
+#     rt_assoc_infos = {
+#         "instance_id": [],
+#         "route_table_id": [],
+#         "route_table_assoc_id": [],
+#         "vpc_id": [],
+#         "subnet_id": []
+#     }
 
-    for rt in route_tables:
-        # rt['Associations'][0]['SubnetId']
-        for assoc in rt['Associations']:
-            if assoc.get('SubnetId') is not None:
-                rt_assoc_infos["instance_id"].append(instance_id)
-                rt_assoc_infos["route_table_id"].append(assoc['RouteTableId'])
-                rt_assoc_infos["route_table_assoc_id"].append(
-                    assoc['RouteTableAssociationId'])
-                rt_assoc_infos["subnet_id"].append(assoc['SubnetId'])
-                rt_assoc_infos["vpc_id"].append(rt['VpcId'])
+#     for rt in route_tables:
+#         # rt['Associations'][0]['SubnetId']
+#         for assoc in rt['Associations']:
+#             if assoc.get('SubnetId') is not None:
+#                 rt_assoc_infos["instance_id"].append(instance_id)
+#                 rt_assoc_infos["route_table_id"].append(assoc['RouteTableId'])
+#                 rt_assoc_infos["route_table_assoc_id"].append(
+#                     assoc['RouteTableAssociationId'])
+#                 rt_assoc_infos["subnet_id"].append(assoc['SubnetId'])
+#                 rt_assoc_infos["vpc_id"].append(rt['VpcId'])
 
-    return rt_assoc_infos
+    # return rt_assoc_infos
 
 
 def main():
@@ -121,12 +121,12 @@ def main():
         "public_ip_address": []
     }
 
-    secGroupInfos = {
-        "instance_id": [],
-        "vpc_id": [],
-        "inboud_rules": [],
-        "outbound_rules": []
-    }
+    # secGroupInfos = {
+    #     "instance_id": [],
+    #     "vpc_id": [],
+    #     "inboud_rules": [],
+    #     "outbound_rules": []
+    # }
 
     for instance in ec2.instances.all():
 
